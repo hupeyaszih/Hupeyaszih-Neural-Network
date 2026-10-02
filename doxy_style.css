@@ -1,0 +1,175 @@
+/** 
+ * @brief Custom CSS to modernize Doxygen HTML documentation
+ * @author Poyraz Bakırtaş
+ * */
+
+@import url('https://fonts.googleapis.com/css?family=JetBrains+Mono');
+
+* {
+    border: none !important;
+    box-shadow: none !important;
+    outline: none !important;
+}
+
+:root {
+    border: 0 !important;
+    --text-main : #EBDBB2;
+
+    --bg-darkest : #242424;
+    --bg-dark    : #282828;
+    --bg-main    : #32302F;
+    --bg-light   : #665C54;
+    --bg-lightest: #6D635B;
+
+    --gray: #665C54;
+
+    --yellow      : #EEBD35;
+    --yellow-light: #FABD2F;
+
+    --font-family-main : "JetBrains Mono";
+    --font-family-title: "Arial";
+
+    --page-background-color: var(--bg-main) !important;
+    --group-header-color: var(--bg-main) !important;
+    --group-header-seperator-color: var(--bg-main) !important;
+
+    --memdcl-border-color: var(--bg-main) !important;
+    --memdef-border-color: var(--bg-main) !important;
+
+    --memdef-background-color: var(--bg-dark) !important;
+
+
+    --memdef-proto-background-color: var(--memdef-background-color) !important;
+    --fragment-border-color: var(--bg-main) !important;
+
+
+    --font-family-normal: var(--font-family-main) !important;
+    --font-family-nav: var(--font-family-main) !important;
+    --font-family-monospace: var(--font-family-main) !important;
+}
+h1, h2, h3 {
+    font-family: var(--font-family-title) !important;
+    color: var(--text-main) !important;
+}
+
+body {
+    background-color: var(--bg-main) !important;
+    color: var(--text-main) !important;
+
+    font-family: var(--font-family-main) !important;
+}
+
+table {
+    background-color: var(--bg-ligt) !important;
+    color: var(--text-main) !important;
+}
+
+.fragment, .tt {
+    background-color: var(--bg-dark) !important;
+}
+
+.even, .odd {
+    background-color: var(--bg-ligt) !important;
+    color: var(--text-main) !important;
+}
+
+.nav-sync-icon, .sub-arrow {
+    display: none !important;
+}
+
+#nav-tree {
+    background-color: var(--bg-darkest) !important;
+}
+#page-nav-contents {
+    background-color: var(--bg-darkest) !important;
+}
+
+
+.sm-dox a:hover, .sm-dox a.highlighted, .sm-dox ul a:hover, ul.tablist li a:hover {
+    background: #32302F !important;
+    color: #FABD2F !important;
+}
+
+.sm-dox ul { background: #242424 !important; border: 1px solid #504945 !important; }
+.sm-dox ul a { background: transparent !important; color: #EBDBB2 !important; }
+.sm-dox a span.sub-arrow { border-color: #FABD2F transparent transparent transparent !important; }
+
+.headertitle {
+    background-color: var(--bg-dark) !important;
+    font-family: var(--font-family-title) !important;
+}
+
+.item {
+    background-color: var(--bg-darkest) !important;
+}
+
+.memtitle {
+    background-color: var(--bg-light) !important;
+    border-color: var(--gray) !important;
+    color: var(--yellow) !important;
+}
+
+.memdoc {
+    background-color: var(--bg-dark) !important;
+    border-color: var(--gray) !important;
+}
+
+.memitem {
+    background-color: var(--bg-dark) !important;
+}
+
+.memItemLeft {
+    background-color: var(--bg-darkest) !important;
+    border: 0 !important;
+}
+
+.memItemRight {
+    background-color: var(--bg-dark) !important;
+    border: 0 !important;
+}
+
+.memproto {
+    background-color: var(--memdef-background-color) !important;
+}
+
+.memdoc {
+}
+
+.navelem {
+    background-color: var(--bg-darkest) !important;
+}
+
+#titlearea {
+    background-color: var(--bg-darkest) !important;
+}
+.sm {
+    background-color: var(--bg-darkest) !important;
+}
+
+#nav-path {
+    ul {
+        background-color: var(--bg-dark) !important;
+    }
+}
+
+.sm::after {
+    background: none !important;
+    box-shadow: none !important;
+}
+
+.navelem::after {
+    background: none !important;
+    box-shadow: none !important;
+}
+
+a, a:visited {
+    color: var(--yellow) !important;
+}
+
+.footer {
+    display: none !important;
+}
+
+.dyncontent img, .center img, .dyncontent object, .center object {
+    filter: invert(0.88) hue-rotate(180deg);
+}
