@@ -23,4 +23,7 @@ There are other limitations and differences compared to other neural network mod
 
 ## Background Reading:
 The following literature includes research and foundational studies reviewed to better understand how the biological brain works, cognitive development, and brain mechanisms during the conceptualization of HNN:
-Stiles, J., & Jernigan, T. L. (2010). The basics of brain development. _Neuropsychology review_, _20_(4), 327-348.
+
+> Agi, E., Kulkarni, A., & Hiesinger, P. R. (2020). Neuronal strategies for meeting the right partner during brain wiring. _Current opinion in neurobiology_, _63_, 1-8.
+> 
+> Stiles, J., & Jernigan, T. L. (2010). The basics of brain development. _Neuropsychology review_, _20_(4), 327-348.
