@@ -26,4 +26,6 @@ The following literature includes research and foundational studies reviewed to 
 
 > Agi, E., Kulkarni, A., & Hiesinger, P. R. (2020). Neuronal strategies for meeting the right partner during brain wiring. _Current opinion in neurobiology_, _63_, 1-8.
 > 
+> Blankenship, A. G., & Feller, M. B. (2010). Mechanisms underlying spontaneous patterned activity in developing neural circuits. _Nature Reviews Neuroscience_, _11_(1), 18-29.
+>
 > Stiles, J., & Jernigan, T. L. (2010). The basics of brain development. _Neuropsychology review_, _20_(4), 327-348.
