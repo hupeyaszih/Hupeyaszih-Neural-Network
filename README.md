@@ -28,4 +28,6 @@ The following literature includes research and foundational studies reviewed to 
 > 
 > Blankenship, A. G., & Feller, M. B. (2010). Mechanisms underlying spontaneous patterned activity in developing neural circuits. _Nature Reviews Neuroscience_, _11_(1), 18-29.
 >
+> Chinta, S. J., & Andersen, J. K. (2005). Dopaminergic neurons. _The international journal of biochemistry & cell biology_, _37_(5), 942-946.
+>
 > Stiles, J., & Jernigan, T. L. (2010). The basics of brain development. _Neuropsychology review_, _20_(4), 327-348.
