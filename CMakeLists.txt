@@ -8,6 +8,10 @@ set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
 add_executable(hupeyaszih-neural-network
     src/main.c
+
+    src/core/brain.c
+
+    src/utils/vector.c
 )
 
 target_include_directories(hupeyaszih-neural-network
