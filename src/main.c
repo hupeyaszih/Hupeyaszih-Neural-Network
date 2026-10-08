@@ -33,5 +33,6 @@ int main() {
     struct brain_map brain_map = brain_init_brain_map(region_list, wiring_config);
 
     brain_start(brain_map);
+
     return 0;
 }
