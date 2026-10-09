@@ -32,6 +32,9 @@ struct brain_part {
 
     uint32_t brain_region_id;
     uint8_t dopamine_level;
+
+    uint32_t neuron_count;
+    uint32_t synapse_count;
 };
 
 struct brain {
@@ -39,6 +42,39 @@ struct brain {
     struct brain_part *brain_parts;
     uint64_t brain_part_count;
 };
+
+void brain_initialize_neurons(struct neurons_data *neurons, uint16_t neuron_count) {
+    if(NULL == neurons) return;
+    neurons->last_spike_time = calloc(neuron_count, sizeof(uint16_t));
+    neurons->type = calloc(neuron_count, sizeof(enum neuron_type));
+
+    neurons->threshold = calloc(neuron_count, sizeof(uint8_t));
+    neurons->voltage = calloc(neuron_count, sizeof(uint8_t));
+}
+
+void brain_initialize_synapses(struct synapses_data *synapses, uint16_t synapse_count) {
+    if(NULL == synapses) return;
+    synapses->target_brain_part = calloc(synapse_count, sizeof(uint16_t));
+    synapses->target_neuron_id = calloc(synapse_count, sizeof(uint16_t));
+
+    synapses->latency = calloc(synapse_count, sizeof(uint8_t));
+    synapses->weight = calloc(synapse_count, sizeof(uint8_t));
+}
+
+void brain_delete_neurons(struct neurons_data *neurons) {
+    if(NULL == neurons) return;
+    free(neurons->voltage);
+    free(neurons->threshold);
+    free(neurons->type);
+    free(neurons->last_spike_time);
+}
+void brain_delete_synapses(struct synapses_data *synapses) {
+    if(NULL == synapses) return;
+    free(synapses->target_neuron_id);
+    free(synapses->target_brain_part);
+    free(synapses->weight);
+    free(synapses->latency);
+}
 
 struct brain *brain_create_brain(struct brain_map brain_map) {
     struct brain *brain = calloc(1, sizeof(struct brain));
@@ -68,7 +104,12 @@ struct brain *brain_create_brain(struct brain_map brain_map) {
             part->brain_region_id = info->region_id;
             part->dopamine_level = 0;
 
+            part->neuron_count  = info->neuron_count_per_brain_part;
+            part->synapse_count = part->neuron_count * info->synapse_count_per_neuron;
+
             // TODO: initialize synapses and neurons
+            brain_initialize_neurons(&part->neurons, part->neuron_count);
+            brain_initialize_synapses(&part->synapses, part->synapse_count);
 
             ++initialized_brain_part_count;
         }
@@ -77,17 +118,32 @@ struct brain *brain_create_brain(struct brain_map brain_map) {
     return brain;
 }
 
-void brain_delete_brain(struct brain *brain) {
-    if(NULL == brain) return;
+void brain_delete_brain_part(struct brain_part **part) {
+    if(NULL == part || NULL == *part) return;
 
-    vector_delete_vector(brain->map.brain_region_infos);
-    vector_delete_vector(brain->map.brain_region_wiring_info);
+    brain_delete_neurons(&(*part)->neurons);
+    brain_delete_synapses(&(*part)->synapses);
 
-    free(brain->brain_parts);
-    free(brain);
+    *part = NULL;
 }
 
-void brain_init_brain_region_info(struct brain_region_info *info, const uint32_t region_id, const char *name, const enum brain_region_type type, const uint32_t neuron_count, const uint32_t neuron_count_per_brain_part, const uint8_t inhibitory_percentage) {
+void brain_delete_brain(struct brain **brain) {
+    if(NULL == brain || NULL == *brain) return;
+
+    vector_delete_vector((*brain)->map.brain_region_infos);
+    vector_delete_vector((*brain)->map.brain_region_wiring_info);
+
+    for(uint64_t i = 0; i < (*brain)->brain_part_count; ++i) {
+        struct brain_part *part = (*brain)->brain_parts + i;
+        brain_delete_brain_part(&part);
+    }
+
+    free((*brain)->brain_parts);
+    free(*brain);
+    *brain = NULL;
+}
+
+void brain_init_brain_region_info(struct brain_region_info *info, const uint32_t region_id, const char *name, const enum brain_region_type type, const uint32_t neuron_count, const uint32_t neuron_count_per_brain_part, const uint32_t synapse_count_per_neuron, const uint8_t inhibitory_percentage) {
     if(NULL == info) return;
     if(NULL == name) return;
 
@@ -97,6 +153,7 @@ void brain_init_brain_region_info(struct brain_region_info *info, const uint32_t
     info->region_type = type;
     info->neuron_count = neuron_count;
     info->neuron_count_per_brain_part = neuron_count_per_brain_part;
+    info->synapse_count_per_neuron = synapse_count_per_neuron;
     info->inhibitory_percentage = inhibitory_percentage;
     info->region_id = region_id;
 }
@@ -119,5 +176,5 @@ struct brain_map brain_init_brain_map(struct vector *brain_region_info_list, str
 void brain_start(struct brain_map map) {
     struct brain *brain = brain_create_brain(map);
 
-    brain_delete_brain(brain);
+    brain_delete_brain(&brain);
 }
