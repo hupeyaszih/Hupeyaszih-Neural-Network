@@ -1,6 +1,5 @@
 #include "core/brain.h"
 #include "utils/vector.h"
-#include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 
@@ -42,6 +41,10 @@ struct brain {
     struct brain_part *brain_parts;
     uint64_t brain_part_count;
 };
+
+static inline uint32_t calcuate_brain_part_count(uint32_t neuron_count, uint32_t neuron_count_per_brain_part) {
+    return neuron_count / neuron_count_per_brain_part;
+}
 
 void brain_initialize_neurons(struct neurons_data *neurons, uint16_t neuron_count) {
     if(NULL == neurons) return;
@@ -86,7 +89,7 @@ struct brain *brain_create_brain(struct brain_map brain_map) {
     // calculate brain part count
     for(uint64_t i = 0;i < brain_map.brain_region_infos->element_count; ++i) {
         const struct brain_region_info *info = (struct brain_region_info *) vector_get_element(brain_map.brain_region_infos, i);
-        uint64_t brain_part_count = info->neuron_count / info->neuron_count_per_brain_part;
+        uint32_t brain_part_count = calcuate_brain_part_count(info->neuron_count, info->neuron_count_per_brain_part);
 
         brain->brain_part_count += brain_part_count;
     }
@@ -107,7 +110,7 @@ struct brain *brain_create_brain(struct brain_map brain_map) {
             part->neuron_count  = info->neuron_count_per_brain_part;
             part->synapse_count = part->neuron_count * info->synapse_count_per_neuron;
 
-            // TODO: initialize synapses and neurons
+            // initialize synapses and neurons
             brain_initialize_neurons(&part->neurons, part->neuron_count);
             brain_initialize_synapses(&part->synapses, part->synapse_count);
 

@@ -57,4 +57,6 @@ void brain_initialize_synapses(struct synapses_data *synapses, uint16_t synapse_
 void brain_delete_neurons(struct neurons_data *neurons);
 void brain_delete_synapses(struct synapses_data *synapses);
 
+void brain_initialize_brain_topology(struct brain *brain);
+
 #endif
