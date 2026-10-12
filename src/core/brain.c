@@ -176,8 +176,14 @@ struct brain_map brain_init_brain_map(struct vector *brain_region_info_list, str
     return (struct brain_map) {.brain_region_infos = brain_region_info_list, .brain_region_wiring_info = brain_region_wiring_info_list};
 }
 
+void brain_initialize_brain_topology(struct brain *brain) {
+    if(NULL == brain) return;
+
+}
+
 void brain_start(struct brain_map map) {
     struct brain *brain = brain_create_brain(map);
+    brain_initialize_brain_topology(brain);
 
     brain_delete_brain(&brain);
 }
