@@ -2,10 +2,22 @@
 
 Hupeyaszih Neural Network is an event-driven neural network architecture, inspired by biological brain (like SNNs), aims to make a real artificial intelligence with energy efficiency, better adaptive learning abilities, and neural plasticity.
 
-> [!NOTE]
-> **Current Phase: Literature Review & Conceptual Design**
-> 
-> HNN is currently in its foundational design phase, analyzing neurodevelopmental dynamics and spiking neural mechanisms. Active development on the core C library and initial benchmarks will begin upon finalizing the theoretical design.
+---
+> [!WARNING]
+> **Current Phase: The project is no longer under development**
+
+## Why the Project is Ended
+
+The reason is simple: it is hard (nearly impossible) to run such a complex system on classical computers, which is the biggest problem of SNN-like neural networks. Whatever you do, AGI cannot be achieved with this architecture, whereas biological computers increase their value and importance.
+
+Other Reasons:
+- I couldn't manage and design what to do; Although I read a few articles on neurology, I'm not a neuro-scientist and I don't have enough experience on this concept.
+- I wanted to achieve big goals, I expected so much, then I realized that most of those goals are kind of unreachable, such as building an HNN model playing DOOM, then StarCraft I.
+- Even if those goals could be achieved, I've not much time because of my school, etc.
+
+This is not the first time I have tried to build an SNN-like neural network, for those reasons I couldn't build that neural network, and I realized why building a neural network (inspired by the biological brain) is so hard and needs many years to achieve and probably a new computer architecture is needed.
+
+---
 
 ## Why This is Needed
 While Large Language Models (LLMs) and other architectures have achieved remarkable results, they suffer from fundamental architectural bottlenecks:
